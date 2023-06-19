@@ -57,16 +57,18 @@ int main() {
             MH();
             Hug();
             printf(C_BLUE);
-            printf("맙소사 우리 게임의 마스코트인 안아줘요가..");
+            printf("맙소사 우리 게임의 마스코트인 안아줘요가..\n");
             Sleep(2000);
-            printf("이상태는 전혀 안아주고 싶지 않아요..");
+            printf("이상태는 전혀 안아주고 싶지 않아요..\n");
             Sleep(2000);
-            printf("이 상태를 해결하려면 전투로 초기화 시키는 수밖에 없어요.");
+            printf("이 상태를 해결하려면 전투로 초기화 시키는 수밖에 없어요.\n");
             Sleep(2000);
-            printf("전 전투에선 할 수 있는게 없으니");
+            printf("전 전투에선 할 수 있는게 없으니\n");
             Sleep(2000);;
             printf("힘내세요^^");
+            Sleep(2000);
 
+            system("cls");
             Fight_Hug(&player);
 
             system("cls");
@@ -79,26 +81,29 @@ int main() {
             printf("칭찬이라도 해드려야 할 것 같지만\n");
             Sleep(2000);
             printf("일단 다음 장소로 이동시켜드릴게요.");
+            Sleep(2000);
+           
             system("cls");
-            
-            Safe = 1;
-            while(Safe == 1)
-            { 
-            Bornfire();
+            printPlayerInfo(&player);
             DoBornfire(&player);
-            Safe = 0;
-            }
             
             system("cls");
             printPlayerInfo(&player);
-            
             Event_VS();
+
+            system("cls");
+            printPlayerInfo(&player);
             Fight_Boss();
+            
+            system("cls");
+            printPlayerInfo(&player);
             Ending(&player);
+            
             exit(0);
             }
-        }
         Dead(&player);
+        exit(0);
+        }
     }
     else if(MAIN_C == '2')
     {

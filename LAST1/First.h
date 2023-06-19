@@ -20,10 +20,9 @@ void Error();
 void Title_Screen();
 void TitleError();
 void Badend2();
-
-
-void Fight_Boss();
-void Event_VS();
+void Fight_Hug(struct Player* player);
+void Fight_Boss(const struct Player* player);
+void Event_VS(const struct Player* player);
 void Dead(const struct Player* player);
 void Ending(struct Player* player);
 #endif

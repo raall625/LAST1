@@ -14,9 +14,11 @@
 #define C_BLUE "\033[34m"
 #define C_PRPL "\033[35m"
 #define C_AQUA "\033[36m"
+//색깔(예쁘다)
 
 void gotoxy(int x, int y)
-{
+{   //아주 유용한 위치조절
+    //근데 이거 하나하나 다해줘야하는거 너무 귀찮은데
     COORD Cur;
     Cur.X = x;
     Cur.Y = y;
@@ -40,7 +42,7 @@ void Title_Screen()
 }
 
 void TitleError()
-{
+{   //이거 fight로 옮겨야 할지도?
     system("cls");
     printf(C_AQUA);
     printf("______________________________\n");
@@ -279,6 +281,7 @@ void TitleError()
 }
 void Error()
 {
+    //이거도 애니메이션 만들어주기
     printf(C_PRPL);
     printf("______________________________\n");
     printf("|                            |\n");
@@ -294,10 +297,11 @@ void Error()
     printf("|     T*HIS I& NOT @E*&@#!!! |\n");
     printf("------------------------------\n");
 }
-
+//그래서 화면 for문으로 어케 바꿔야 했을까
 
 void Badend2()
 {
+    //바보같다 진짜
     system("cls");
     printf("나는 컴퓨터에 물을 쏟으면 무슨일이 일나는지 모르는 바보였기에\n");
     Sleep(2000);
@@ -362,7 +366,7 @@ void tutorial(struct Player* player) {
             printf(C_BLUE);
             printf("???:...\n");
             Sleep(2000);
-            printf("???:어서오세요! 세상에서 가장 완벽한 게임에!\n");
+            printf("???:어서오세요!  DEFECTIVE 에!\n");
             Sleep(2000);
             printf("???:저는 여러분들이 이 게임을 즐기는 것을 도와줄 나레이터입니다!\n");
             Sleep(2000);
@@ -394,26 +398,26 @@ void tutorial(struct Player* player) {
             printf("나레이터:이중에서 갖고싶은것을 골라주시겠어요?\n");
             Sleep(2000);
             printf(C_NRML);
-            printf("1.힘 2.지능 3.행운\n");
+            printf("1.힘 2.지능 3.행운\n");//좀더 멋진 선택지로 바꿔보기
             scanf_s(" %c", &cho,sizeof(cho));
             printf(C_BLUE);
 
             if (cho == '1') {
-                printf("나레이터:좋아요 그럼 나중에 당신을 위해 캐릭터의 힘을 올려드리죠.\n");
+                printf("나레이터:좋아요 그럼 나중에 당신을 위한 힘의 캐릭터를 골라드리죠.\n");
                 player->hp =  6;
                 player->Atk = 3;
                 player->Int = 1;
                 player->Luk = 2;
             }
             else if (cho == '2') {
-                printf("나레이터:좋아요 그럼 나중에 당신을 위해 캐릭터의 지능을 올려드리죠.\n");
+                printf("나레이터:좋아요 그럼 나중에 당신을 위한 지능의 캐릭터를 골라드리죠.\n");
                 player->hp =  5;
                 player->Atk = 1;
                 player->Int = 3;
                 player->Luk = 2;
             }
             else if (cho == '3') {
-                printf("나레이터:좋아요 그럼 나중에 당신을 위해 캐릭터의 행운을 올려드리죠.\n");
+                printf("나레이터:좋아요 그럼 나중에 당신을 위한 지능의 캐릭터를 골라드리죠.\n");
                 player->hp =  4;
                 player->Atk = 1;
                 player->Int = 1;
@@ -483,6 +487,7 @@ void tutorial(struct Player* player) {
         }
         else
         {
+            //이거 변수로 만들고 좀 써먹을까?
             printf("오동작으로 인해 컴퓨터가 망가져버렸다..\n");
             Sleep(2000);
             printf("BadEnd3:제발 선택지에 있는걸 골라줘");
@@ -492,6 +497,7 @@ void tutorial(struct Player* player) {
     }
     else
     {
+        //너무 심심함
         printf(C_PRPL);
         printf("그렇게 하기 싫으시다면\n");
         Sleep(2000);
@@ -509,8 +515,10 @@ void tutorial(struct Player* player) {
 
 void DoBornfire(struct Player* player)
 {
+    //화톳불 애니메이션 추가
     int a = 0, c = 1;
-
+    printPlayerInfo(player);
+    Bornfire();
     printf(C_NRML);
     printf("다음 스테이지로 이동하니 눈앞에 화톳불이 존재한다\n");
     Sleep(2000);
@@ -542,6 +550,7 @@ void DoBornfire(struct Player* player)
     }
     else if (c == 2)
     {
+        //뭔가 추가할만한게 없나?
         char A =  '0';
         int RR = 0;
         printf("당신은 능력을 단련하려 합니다.\n");
@@ -596,7 +605,7 @@ void DoBornfire(struct Player* player)
 void Rule(struct Player* player)
 {
     printf(C_BLUE);
-    printf("지금부터 당신은 저 몬스터를 상대해야 합니다.\n");
+    printf("지금부터 당신은 전투를 수행해야 합니다.\n");
     Sleep(2000);
     printf("상대법은 간단합니다\n");
     Sleep(2000);
@@ -621,16 +630,17 @@ void Rule(struct Player* player)
     printf("행운을 빌게요. %s씨\n", player->name);
     Sleep(3000);
     system("cls");
+    // 좀더 간결하고 친절하게
 }
 
 void Fight_Hug(struct Player* player)
 {
     int dice = 0;
     char Choice = '0';
-
+    //사라지는 이펙트,추가 선택지, 다이스 값 조정,대사 추가
     system("cls");
+    printPlayerInfo(player);
     Hug();
-    printPlayerInfo(&player);
     printf(C_NRML);
     printf("안?아?줘?요?는 지금 누군가를 안고 싶어하고 있습니다.\n");
     Sleep(2000);
@@ -643,19 +653,20 @@ void Fight_Hug(struct Player* player)
     if (Choice == '1')
     {
         system("cls");
+        printPlayerInfo(player);
         Hug();
-        printPlayerInfo(&player);
         printf("당신은 안?아?줘?요?를 최대한 위험하지 않을 정도로만 안아봅니다.\n");
         Sleep(2000);
         printf("Int > DICE(0~2) 일시 성공 \n");
         Sleep(2000);
         dice = rand() % 2 + 1;
-        printf("DICE = %d", dice);
-        if (player->Int > dice)
+        printf("DICE >= %d", dice);
+        Sleep(2000);
+        if (player->Int >= dice)
         {
             system("cls");
+            printPlayerInfo(player);
             Hug();
-            printPlayerInfo(&player);
             printf("당신은 그 기괴한 생명체를 안정적으로 안아주는데에 성공합니다.\n");
             Sleep(2000);
             printf("끌어안는 힘이 비정상적으로 강해 당신은 고통을 느낍니다.\n");
@@ -666,8 +677,8 @@ void Fight_Hug(struct Player* player)
             printf(C_NRML);
             player->hp -= 1;
             system("cls");
+            printPlayerInfo(player);
             Hug();
-            printPlayerInfo(&player);
             printf("그럼에도 그것은 만족하지 않고 당신을 더욱 끌어안으려 합니다.\n");
             Sleep(2000);
             printf("어떻게 해야 할까요?\n");
@@ -677,19 +688,20 @@ void Fight_Hug(struct Player* player)
             if (Choice == '1')
             {
                 system("cls");
+                printPlayerInfo(player);
                 Hug();
-                printPlayerInfo(&player);
                 printf("당신은 힘을 빼고 그것에게 쭉 안겨집니다.\n");
                 Sleep(2000);
                 printf("Luk > DICE(0~5) 일시 성공 \n");
                 Sleep(2000);
                 dice = rand() % 6;
                 printf("DICE = %d", dice);
+                Sleep(2000);
                 if (player->Luk > dice)
                 {
                     system("cls");
+                    printPlayerInfo(player);
                     Hug();
-                    printPlayerInfo(&player);
                     printf("성공!\n");
                     Sleep(2000);
                     printf("당신은 점차 압사당할거 같은 느낌을 받습니다. \n");
@@ -701,7 +713,7 @@ void Fight_Hug(struct Player* player)
                     printf("그것이 떠나고 난 자리에 무엇인가 남아있습니다.\n");
                     Sleep(2000);
                     printf(C_AQUA);
-                    printf("(행복해요) 방금 싸웠던 괴생명체와 닮았지만 매우 귀여운 모습의 인형입니다.\n ");
+                    printf("(행복해요): 방금 싸웠던 괴생명체와 닮았지만 매우 귀여운 모습의 인형입니다.\n ");
                     printf(C_NRML);
                     Sleep(2000);
                     printf("당신은 그것을 챙깁니다.(Luk + 2)\n");
@@ -713,8 +725,8 @@ void Fight_Hug(struct Player* player)
                 else
                 {
                     system("cls");
+                    printPlayerInfo(player);
                     Hug();
-                    printPlayerInfo(&player);
                     printf("실패\n");
                     Sleep(2000);
                     printf("당신은 점차 압사당할거 같은 느낌을 받습니다. \n");
@@ -728,8 +740,8 @@ void Fight_Hug(struct Player* player)
                     player->hp -= 3;
                     Sleep(2000);
                     system("cls");
+                    printPlayerInfo(player);
                     Hug();
-                    printPlayerInfo(&player);
                     printf("...\n");
                     Sleep(2000);
                     printf("시간이 지나 당신은 천천히 깨어납니다.\n");
@@ -739,7 +751,7 @@ void Fight_Hug(struct Player* player)
                     printf("그것이 떠나고 난 자리에 무엇인가 남아있습니다.\n");
                     Sleep(2000);
                     printf(C_AQUA);
-                    printf("(미안해요) 방금 싸웠던 괴생명체와 닮았지만 매우 귀여운 모습의 인형입니다.\n ");
+                    printf("(미안해요): 방금 싸웠던 괴생명체와 닮았지만 매우 귀여운 모습의 인형입니다.\n ");
                     printf(C_NRML);
                     Sleep(2000);
                     printf("당신은 그것을 챙깁니다.(Int + 2)\n");
@@ -752,14 +764,15 @@ void Fight_Hug(struct Player* player)
             else if (Choice = '2')
             {
                 system("cls");
+                printPlayerInfo(player);
                 Hug();
-                printPlayerInfo(&player);
                 printf("당신은 온힘으로 그것을 밀어내려합니다!\n");
                 Sleep(2000);
-                printf("Atr > DICE(0~5) 일시 성공\n");
+                printf("Atr >= DICE(0~5) 일시 성공\n");
                 dice = rand() % 6;
                 printf("DICE = %d",dice);
-                if (player->Atk > dice)
+                Sleep(2000);
+                if (player->Atk >= dice)
                 {
                     printf("당신은 죽을 힘을 다해 그것을 밀어내는데에 성공합니다.\n");
                     Sleep(2000);
@@ -793,16 +806,17 @@ void Fight_Hug(struct Player* player)
     else if (Choice == '2')
     {
         system("cls");
+        printPlayerInfo(player);
         Hug();
-        printPlayerInfo(&player);
         printf("당신은 그 괴생명체가  당신은 지나치도록 숨을 곳을 찾습니다.\n");
         Sleep(2000);
         printf("당신은 주변에 있는 나무 뒤에 숨어보려합니다.\n");
         Sleep(2000);
         printf("Int > Dice(1~4)일시 성공\n");
         dice = rand() % 4 + 1;
-        printf("DICE = %d\n", dice);
-        if (player->Int > dice)
+        printf("DICE >= %d\n", dice);
+        Sleep(2000);
+        if (player->Int >= dice)
         {
             printf("성공!\n");
             Sleep(2000);
@@ -839,7 +853,9 @@ void Fight_Hug(struct Player* player)
             Sleep(2000);
             printf("Atk + Luk > DICE(1~6)일시 성공\n");
             dice = rand() % 6 + 1;
-            if ((player->Atk + player->Luk) > dice)
+            printf("DEC >= %d\n", dice);
+            Sleep(2000);
+            if ((player->Atk + player->Luk) >= dice)
             {
                 printf("당신은 가까스로 그것에게 붙잡히지 않습니다.\n");
                 Sleep(2000);
@@ -864,24 +880,299 @@ void Fight_Hug(struct Player* player)
                 Sleep(2000);
                 printf(C_RED);
                 printf("HP - 999");
-                player->hp = 0;
                 Sleep(2000);
+                player->hp = 0;
             }
 
         }
     }
+    else if (Choice == 3);
+    {
+        printf("저 괴생명체의 약점이라 생각되는 곳을 때리려합니다.\n");
+        Sleep(2000);
+        printf("Atk+Luk > dice0~10 일시 성공\n");
+        dice = rand() & 10;
+        printf("DICE = %d",dice);
+        Sleep(2000);
+        if ((player->Atk + player->Luk) >= dice)
+        {
+            printf("성공!\n");
+            Sleep(2000);
+            printf("당신은 그 괴생명체의 약점을 정확히 공격하는데에 성공합니다!\n");
+            Sleep(2000);
+            printf("상대는 순식간에 쓰러져 움직이지 않습니다.\n");
+            Sleep(2000);
+            printf("그러더니 서서히 희미해져 사라집니다.\n");
+            Sleep(2000);
+            printf("사라진 자리에 무엇인가 남아있습니다.\n");
+            Sleep(2000);
+            printf(C_AQUA);
+            printf("(두려워요):개미가 바들바드 떨고있는 인형입니다..?\n");
+            Sleep(2000);
+            printf(C_NRML);
+            printf("당신은 그것을 챙깁니다.(Akt+1,Luk+2)\n");
+            Sleep(2000);
+            printf("전투 종료!");
+            Sleep(2000);
+           
+        }
+        else
+        {
+            printf("실패\n");
+            Sleep(2000);
+            printf("당신은 온힘을 다해 공격해보지만\n");
+            Sleep(2000);
+            printf("저 오류덩어리 괴물에겐 공격이 통하지 않는것 같습니다.\n");
+            Sleep(2000);
+            printf("그 순간 안?아?줘?요?는 자신을 공격하려 했음을 깨닫습니다!\n");
+            Sleep(2000);
+            printf("그것은 매우 화난 표정으로 당신에게 다가오기 시작합니다.\n");
+            Sleep(2000);
+            printf("어떻게 해야할까요?\n");
+            Sleep(2000);
+            printf("1.도망친다 2.전력으로 도망친다. 3.살려달라고 소리지르며 도망친다\n");
+            Sleep(2000);
+            printf("매우 큰일난 상황입니다!\n");
+            Sleep(2000);
+            printf("도망치는 것 말고는 방법이 없어요!\n");
+            Sleep(2000);
+            printf("Luk >= Dice(1,10)일시 성공\n");
+            Sleep(2000);
+            dice = rand() % 11 + 1;
+            printf("DICE = %d\n", dice);
+            Sleep(2000);
+            if (player->Atk >= dice)
+            {
+                printf("성공!\n");
+                Sleep(2000);
+                printf("당신은 열심히 달려보지만 저 괴물에게서 도망치기엔 역부족입니다.\n");
+                Sleep(2000);
+                printf("그렇게 잡히기 직전 당신의 눈앞에서 다른 안?아?줘?요?가 날아옵니다!\n");
+                Sleep(2000);
+                printf("그 괴물들은 서로를 마주보더니 당신에게서 관심을 잃습니다!\n");
+                Sleep(2000);
+                printf("그리곤 그 둘은 서로를 안더니 사라집니다!\n");
+                Sleep(2000);
+                printf("그들이 사라진 곳에 가보니 무엇인가가 떨어져있습니다.\n");
+                Sleep(2000);
+                printf(C_AQUA);
+                printf("(안아줘요!):행복하게 웃고있는 안아줘요입니다, 정말 껴안고 싶어집니다.\n");
+                Sleep(2000);
+                printf(C_NRML);
+                printf("당신은 그것을 챙깁니다.\n");
+                Sleep(2000);
+                printf("HP+1 ATK+1 INT+1 LUK+1\n");
+                player->hp += 1;
+                player->Atk += 1;
+                player->Int += 1;
+                player->Luk += 1;
+                printf("전투 종료!");
 
+            }
+            else
+            {
+                printf("실패!\n");
+                Sleep(2000);
+                printf("당신은 그 괴물에게서 도망치려 하지만\n");
+                Sleep(2000);
+                printf("그것은 너무 빠릅니다!\n");
+                Sleep(2000);
+                printf("당신은 그렇게 붙잡히고 말았습니다.\n");
+                Sleep(2000);
+                printf("당신은 살아남지 못할것이라는걸 느낍니다..\n");
+                Sleep(2000);
+                printf(C_RED);
+                printf("Hp-999");
+                Sleep(2000);
+                player->hp = 0;
+
+            }
+            
+            
+        }
+    }
+    
+}
+
+void Fight_Boss(struct Player* player)
+{
+    system("cls");
+    printPlayerInfo(player);
+    printf("원래라면 최종보스가 등장해야하지만...\n");
+    Sleep(2000);
+    printf("제작자의 나태함과 수많은 버그가 겹쳐\n");
+    Sleep(2000);
+    printf("결국 최종보스같은거 없는 겜이 되버렷답니다.\n");
+    Sleep(2000);
+    printf("뭐 어쩌겠나요 게임 제목에서 보다시피 이 게임은 미완성인 게임인데");
+    Sleep(2000);
+    printf("언젠간 분명 완성되겠지만\n");
+    Sleep(2000);
+    printf("그건 그때 일이고 지금 해드릴 수 있는게 없단 말이죠?\n");
+    Sleep(2000);
+    printf("그러니 대충 버그가 일어났다 치고\n");
+    Sleep(2000);
+    printf("일단 맘편히 엔딩이나 출력해봅시다");
+    Sleep(2000);
+    system("cls");
+    //완전한 게임을 꿈꾸며
+}
+
+void Event_VS(struct Player* player)
+{
+    char ccc = '0';
+    int VDice = 0;
+    system("cls");
+    printPlayerInfo(player);
+    printf("이곳은 주변에 어떠한 그래픽도,몬스터도 존재하지 않습니다.\n");
+    Sleep(2000);
+    printf("그저 원하는걸 말해보라는 쪽지만이 놓여있을 뿐이네요.\n");
+    Sleep(2000);
+    printf("쪽지엔 이렇게 쓰여 있습니다.\n");
+    Sleep(2000);
+    printf("1.초콜릿 2.커피 3.스텟? 4.돈...?\n");
+    scanf_s(" %s", ccc, sizeof(ccc));
+    if (ccc == '1')
+    {
+        printf("당신은 초콜릿을 원한다고 말해봅니다.\n");
+        Sleep(2000);
+        printf("그러자 하늘에서 카카오가 떨어지기 시작합니다..?\n");
+        Sleep(2000);
+        printf("Atk >= dice(1~6) 일시 성공\n");
+        VDice = rand() % 6 + 1;
+        printf("DICE = %d\n", &VDice);
+        Sleep(2000);
+        if (player->Atk >= VDice)
+        {
+            printf("성공!\n");
+            Sleep(2000);
+            printf("당신은 떨어지는 카카오를 붙잡습니다.\n");
+            Sleep(2000);
+            printf("그리고 그 카카오를 먹어봅니다.\n");
+            Sleep(2000);
+            printf("달달한 맛이 몸에 퍼져 힘이 납니다.\n");
+            Sleep(2000);
+            printf("HP+1 Atk+1\n");
+            player->hp += 1;
+            player->Atk += 1;
+            printf("이벤트 종료!\n");
+            Sleep(2000);
+            system("cls");
+            //코코아로 직접 초콜릿만들어보기...?
+        }
+        else
+        {
+            printf("실패!\n");
+            printf("당신은 떨어지는 코코아에 머리를 맞아버립니다!\n");
+            Sleep(2000);
+            printf("머리를 맞으니 멍청해지는 기분입니다..\n");
+            Sleep(2000);
+            printf("Int - 1\n");
+            player->Int -= 1;
+            printf("이벤트 종료!");
+            Sleep(2000);
+            //이걸로 쌓인 분노를 코코아에 풀기
+        }
+    }
+    else if (ccc == '2')
+    {
+        printf("당신은 커피를 달라고 말해봅니다\n");
+        Sleep(2000);
+        printf("그러자 눈앞에 커피 자판기가 나타납니다!\n");
+        Sleep(2000);
+        printf("당신은 자판기의 커피를 뽑아 먹으려 합니다.\n");
+        Sleep(2000);
+        printf("그런데.. 우리 돈이 있던가요?\n");
+        Sleep(2000);
+        printf("LUK >= Dice(1~6)\n");
+        VDice = rand() % 6 + 1;
+        Sleep(2000);
+        printf("Dice = %d\n",VDice);
+        Sleep(2000);
+        if (player->Luk >= VDice)
+        {
+            printf("성공!\n");
+            Sleep(2000);
+            printf("당신은 주머니를 뒤지다 동전을 발견합니다!\n");
+            Sleep(2000);
+            printf("운수가 좋군요! 덕분에 따뜻한 커피 한잔의 여유를 즐길 수 있겠어요!\n");
+            Sleep(2000);
+            printf("당신은 커피를 마십니다.\n");
+            Sleep(2000);
+            printf("몸에 카페인이 돌자 생기가 돌기 시작합니다!\n");
+            Sleep(2000);
+            printf("Hp + 1, Int + 3\n");
+            Sleep(2000);
+            player->hp += 1;
+            player->Int += 3;
+            printf("이벤트 종료!");
+            Sleep(2000);
+            //어떤 커피를 마실지?
+
+        }
+        else
+        {
+            printf("실패!\n");
+            Sleep(2000);
+            printf("아무리 주머니를 뒤져보고 주변을 둘러봐도\n");
+            Sleep(2000);
+            printf("돈은 한푼도 나오지 않네요..\n");
+            Sleep(2000);
+            printf("어쩔 수 없이 커피 한잔의 여유는 포기해야겠네요.");
+            Sleep(2000);
+            printf("이벤트 종료!");
+            Sleep(2000);
+            //자판기 때려부수기 선택지 추가,돈 소원 한번 빌어보기 추가
+
+        }
+    }
+    else if (ccc == "3")
+    {
+        printf("당신은 스텟을 원한다고 말합니다.");
+        Sleep(2000);
+        printf("그러자 당신의 스텟이 뒤바뀌기 시작합니다!\n");
+        Sleep(2000);
+        printf("Hp = 1 Atk = 5 Int = 5 Luk = 1");
+        Sleep(2000);
+        player->hp = 0;
+        player->Atk = 5;
+        player->Int = 5;
+        player->Luk = 5;
+        printf("뭐 원하는대론 이루어 지셧네요 축하드려요.\n");
+        player->hp = 0;
+        printf("이벤트 종료!\n");
+        //랜덤하게 다른경우의 스텟이 나올수도 있게끔
+
+    }
+    else if (ccc = '4')
+    {
+        printf("당신은 돈을 원한다고 말해봅니다.\n");
+        Sleep(2000);
+        printf("그러자 하늘에서 달러가 쏟아집니다! 야호!\n");
+        Sleep(2000);
+        printf("그런데 여긴 게임속인데 달러가 의미가 있나요?\n");
+        Sleep(2000);
+        printf("심지어 이게임 상점같은것도 구현이 안되있다고요?\n");
+        Sleep(2000);
+        printf("왜 이걸 고르신거죠..?\n");
+        Sleep(2000);
+        printf("뭐.. 잠깐 기분은 좋았으니 무의미 하진 않았다고 생각하자고요..\n");
+        Sleep(2000);
+        printf("이벤트 종료!");
+        Sleep(2000);
+        //돈을 챙겨놓고 특정 상태에서 사용할 수 있도록?
+    }
+    else
+    {
+        printf("오류가 발생했거나 게임이 조졋거나 잘못입력했거나?");
+        Sleep(2000);
+        exit(0);
+        //돌아가게 해야함
+    }
 
 }
-void Fight_Boss()
-{
-    printf("실례가 안된다면 한번만 죽어주세요.");
-}
-void Event_VS()
-{
-    printf("1.초콜릿 2.커피 3.사과 4.포기한다.");
-}
-void Dead(const struct Player* player)
+
+void Dead(struct Player* player)
 {
     system("cls");
     printf(C_RED);
@@ -894,10 +1185,11 @@ void Dead(const struct Player* player)
     printf("제 말에 반박할게 있으시다면 직접 찾아오시죠\n");
     Sleep(2000);
     printf(C_BLUE);
-    printf("???:언제든 오셔도 좋습니다. %s님", player->name);
+    printf("언제든 오셔도 좋습니다. %s님", player->name);
     Sleep(5000);
     exit(0);
 }
+
 void Ending(struct Player* player)
 {
     system("cls");
@@ -921,7 +1213,7 @@ void Ending(struct Player* player)
     printf("그냥 짧게 한마디만 써야겠군요.\n");
     Sleep(2000);
     printf(C_BLUE);
-    printf("???: %s님 지금까지 정말로 감사했습니다. 당신은 제 감사를 받을 자격이 있이요\n", &player->name);
+    printf("%s님 지금까지 정말로 감사했습니다. 당신은 제 감사를 받을 자격이 있이요\n", &player->name);
     Sleep(5000);
     exit(0);
 }
