@@ -298,7 +298,126 @@ void Error()
     printf("------------------------------\n");
 }
 //그래서 화면 for문으로 어케 바꿔야 했을까
-
+void ErrorAni()
+{
+    printf(C_PRPL);
+    printf("______________________________\n");
+    Sleep(500);;
+    system("cls");
+    printf(C_PRPL);
+    printf("______________________________\n");
+    printf("|                            |\n");
+    Sleep(500);;
+    system("cls");
+    printf(C_PRPL);
+    printf("______________________________\n");
+    printf("|                            |\n");
+    printf("|        BA^D                |\n");
+    Sleep(500);;
+    system("cls");
+    printf(C_PRPL);
+    printf("______________________________\n");
+    printf("|                            |\n");
+    printf("|        BA^D                |\n");
+    printf("|               $@Eds        |\n");
+    Sleep(500);;
+    system("cls");
+    printf(C_PRPL);
+    printf("______________________________\n");
+    printf("|                            |\n");
+    printf("|        BA^D                |\n");
+    printf("|               $@Eds        |\n");
+    printf(C_GREN);
+    printf("|         QUY!Fhou           |\n");
+    Sleep(500);;
+    system("cls");
+    printf(C_PRPL);
+    printf("______________________________\n");
+    printf("|                            |\n");
+    printf("|        BA^D                |\n");
+    printf("|               $@Eds        |\n");
+    printf(C_GREN);
+    printf("|         QUY!Fhou           |\n");
+    printf("|                            |\n");
+    Sleep(500);;
+    system("cls");
+    printf(C_PRPL);
+    printf("______________________________\n");
+    printf("|                            |\n");
+    printf("|        BA^D                |\n");
+    printf("|               $@Eds        |\n");
+    printf(C_GREN);
+    printf("|         QUY!Fhou           |\n");
+    printf("|                            |\n");
+    Sleep(500);;
+    system("cls");
+    printf(C_PRPL);
+    printf("______________________________\n");
+    printf("|                            |\n");
+    printf("|        BA^D                |\n");
+    printf("|               $@Eds        |\n");
+    printf(C_GREN);
+    printf("|         QUY!Fhou           |\n");
+    printf("|                            |\n");
+    Sleep(500);;
+    system("cls");
+    printf(C_PRPL);
+    printf("______________________________\n");
+    printf("|                            |\n");
+    printf("|        BA^D                |\n");
+    printf("|               $@Eds        |\n");
+    printf(C_GREN);
+    printf("|         QUY!Fhou           |\n");
+    printf("|                            |\n");
+    printf("|       2eq ST$RT            |\n");
+    printf("|             sdbqygy2q      |\n");
+    Sleep(500);;
+    system("cls");
+    printf(C_PRPL);
+    printf("______________________________\n");
+    printf("|                            |\n");
+    printf("|        BA^D                |\n");
+    printf("|               $@Eds        |\n");
+    printf(C_GREN);
+    printf("|         QUY!Fhou           |\n");
+    printf("|                            |\n");
+    printf("|       2eq ST$RT            |\n");
+    printf("|             sdbqygy2q      |\n");
+    printf("|                            |\n");
+    Sleep(500);;
+    system("cls");
+    printf(C_PRPL);
+    printf("______________________________\n");
+    printf("|                            |\n");
+    printf("|        BA^D                |\n");
+    printf("|               $@Eds        |\n");
+    printf(C_GREN);
+    printf("|         QUY!Fhou           |\n");
+    printf("|                            |\n");
+    printf("|       2eq ST$RT            |\n");
+    printf("|             sdbqygy2q      |\n");
+    printf("|                            |\n");
+    printf(C_AQUA);
+    printf("|     T*HIS I& NOT @E*&@#!!! |\n");
+    Sleep(500);;
+    system("cls");
+    printf(C_PRPL);
+    printf("______________________________\n");
+    printf("|                            |\n");
+    printf("|        BA^D                |\n");
+    printf("|               $@Eds        |\n");
+    printf(C_GREN);
+    printf("|         QUY!Fhou           |\n");
+    printf("|                            |\n");
+    printf("|       2eq ST$RT            |\n");
+    printf("|             sdbqygy2q      |\n");
+    printf("|                            |\n");
+    printf(C_AQUA);
+    printf("|     T*HIS I& NOT @E*&@#!!! |\n");
+    printf("------------------------------\n");
+    Sleep(500);;
+    system("cls");
+}
 void Badend2()
 {
     //바보같다 진짜
@@ -337,7 +456,7 @@ void printPlayerInfo(const struct Player* player)
 
 void tutorial(struct Player* player) {
     char cho, Bad, Bad2;
-    
+
     TitleError();
     printf("주의! 지금? 이 게p임에 오/류가 발생하고 있습니다.\n");
     Sleep(2000);
@@ -347,6 +466,7 @@ void tutorial(struct Player* player) {
     if (Bad == '1')
     {
         system("cls");
+        ErrorAni();
         Error();
         printf("(...오류가 발생한다는게 거짓말은 아니였던 모양이다.)\n");
         Sleep(2000);
@@ -687,6 +807,7 @@ void Fight_Hug(struct Player* player)
             scanf_s(" %c", &Choice, sizeof(Choice));
             if (Choice == '1')
             {
+                Choice = '0';
                 system("cls");
                 printPlayerInfo(player);
                 Hug();
@@ -724,6 +845,7 @@ void Fight_Hug(struct Player* player)
                 }
                 else
                 {
+                    Choice = '0';
                     system("cls");
                     printPlayerInfo(player);
                     Hug();
@@ -805,6 +927,7 @@ void Fight_Hug(struct Player* player)
     }
     else if (Choice == '2')
     {
+        Choice = '0';
         system("cls");
         printPlayerInfo(player);
         Hug();
@@ -888,6 +1011,7 @@ void Fight_Hug(struct Player* player)
     }
     else if (Choice == 3);
     {
+        Choice = '0';
         printf("저 괴생명체의 약점이라 생각되는 곳을 때리려합니다.\n");
         Sleep(2000);
         printf("Atk+Luk > dice0~10 일시 성공\n");
@@ -918,6 +1042,7 @@ void Fight_Hug(struct Player* player)
         }
         else
         {
+            Choice = '0';
             printf("실패\n");
             Sleep(2000);
             printf("당신은 온힘을 다해 공격해보지만\n");
@@ -1034,6 +1159,7 @@ void Event_VS(struct Player* player)
     scanf_s(" %s", ccc, sizeof(ccc));
     if (ccc == '1')
     {
+        char ccc = '0';
         printf("당신은 초콜릿을 원한다고 말해봅니다.\n");
         Sleep(2000);
         printf("그러자 하늘에서 카카오가 떨어지기 시작합니다..?\n");
@@ -1044,6 +1170,7 @@ void Event_VS(struct Player* player)
         Sleep(2000);
         if (player->Atk >= VDice)
         {
+
             printf("성공!\n");
             Sleep(2000);
             printf("당신은 떨어지는 카카오를 붙잡습니다.\n");
@@ -1076,6 +1203,7 @@ void Event_VS(struct Player* player)
     }
     else if (ccc == '2')
     {
+        char ccc = '0';
         printf("당신은 커피를 달라고 말해봅니다\n");
         Sleep(2000);
         printf("그러자 눈앞에 커피 자판기가 나타납니다!\n");
@@ -1128,6 +1256,7 @@ void Event_VS(struct Player* player)
     }
     else if (ccc == "3")
     {
+        char ccc = '0';
         printf("당신은 스텟을 원한다고 말합니다.");
         Sleep(2000);
         printf("그러자 당신의 스텟이 뒤바뀌기 시작합니다!\n");
@@ -1146,6 +1275,7 @@ void Event_VS(struct Player* player)
     }
     else if (ccc = '4')
     {
+        char ccc = '0';
         printf("당신은 돈을 원한다고 말해봅니다.\n");
         Sleep(2000);
         printf("그러자 하늘에서 달러가 쏟아집니다! 야호!\n");

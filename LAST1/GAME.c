@@ -32,6 +32,7 @@ int main() {
             while (player.hp > 0)
             {
             printPlayerInfo(&player);
+            
             printf(C_BLUE);
             printf("아 무사히 접속된 것 같네요!\n");
             Sleep(2000);
@@ -54,8 +55,10 @@ int main() {
             Sleep(2000);
             printf("저 멀리서 무엇인가 날아오는데..?\n");
             Sleep(2000);
+            
             MH();
             Hug();
+            
             printf(C_BLUE);
             printf("맙소사 우리 게임의 마스코트인 안아줘요가..\n");
             Sleep(2000);
@@ -67,6 +70,7 @@ int main() {
             Sleep(2000);;
             printf("힘내세요^^");
             Sleep(2000);
+            
 
             system("cls");
             Fight_Hug(&player);
@@ -74,7 +78,7 @@ int main() {
             system("cls");
             printPlayerInfo(&player);
 
-
+           
             printf(C_BLUE);
             printf("축하해요 무사히 통과하셧네요.\n");
             Sleep(2000);;
@@ -82,6 +86,7 @@ int main() {
             Sleep(2000);
             printf("일단 다음 장소로 이동시켜드릴게요.");
             Sleep(2000);
+            
            
             system("cls");
             printPlayerInfo(&player);
@@ -89,11 +94,10 @@ int main() {
             
             system("cls");
             printPlayerInfo(&player);
-            Event_VS();
-
+            Event_VS(&player);
             system("cls");
             printPlayerInfo(&player);
-            Fight_Boss();
+            Fight_Boss(&player);
             
             system("cls");
             printPlayerInfo(&player);
